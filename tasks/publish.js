@@ -58,16 +58,17 @@ module.exports = function(grunt) {
             f.src.forEach(function (filepath) {
                 var ignored = getIgnored(filepath);
                 if (!ignored && isValidDir(filepath)) {
-                    grunt.log.ok('Publishing ' + filepath + ' ...');
+                    var moduleName = grunt.file.readJSON(path.resolve(filepath, 'package.json')).name;
+                    grunt.log.ok('Publishing ' + moduleName + ' (' + filepath + ') ...');
                     tasks.push(function (cb) {
                         npmPublisher(filepath, function (err) {
                             if (err) {
-                                grunt.log.error('Unable to publish ' + path.basename(filepath) + ' (' + err.message.split('\n')[0] + ')');
-                                errors.push(filepath);
+                                grunt.log.error('Unable to publish ' + moduleName + ' (' + err.message.split('\n')[0] + ')');
+                                errors.push(moduleName + ' (' + err.message.split('\n')[0] + ')');
                                 return cb();
                             }
-                            grunt.log.ok(path.basename(filepath) + ' published successfully');
-                            success.push(filepath);
+                            grunt.log.ok(moduleName + ' published successfully');
+                            success.push(moduleName);
                             cb();
                         });
                     });
