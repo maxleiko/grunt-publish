@@ -24,9 +24,11 @@ module.exports = function(grunt) {
 
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
-            ignore: ['node_modules']
+            ignore: ['node_modules'],
+            registry : null
         });
 
+        var publish_options = options.registry ? {registry: options.registry} : null;
         /**
          * Validates "ignore" option for given path
          * @param filepath
@@ -61,7 +63,7 @@ module.exports = function(grunt) {
                     var moduleName = grunt.file.readJSON(path.resolve(filepath, 'package.json')).name;
                     grunt.log.ok('Publishing ' + moduleName + ' (' + filepath + ') ...');
                     tasks.push(function (cb) {
-                        npmPublisher(filepath, function (err) {
+                        npmPublisher(filepath, publish_options, function (err) {
                             if (err) {
                                 grunt.log.error('Unable to publish ' + moduleName + ' (' + err.message.split('\n')[0] + ')');
                                 errors.push(moduleName + ' (' + err.message.split('\n')[0] + ')');
