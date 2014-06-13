@@ -59,7 +59,28 @@ publish: {
     }
 },
 ```
-Will ignore any path container whether 'node_modules' or 'foo' within its path
+
+#### options.registry
+Type: `String`
+Default value: `null` (default npm registry)
+
+Modify publishing registry
+For example:
+```js
+publish: {
+    main: {
+        options: {
+            registry: 'https://my-own-registry.foo'
+        },
+        src: [
+            'test/fixtures/aFolder/another-module',
+            'test/fixtures/fake-module'
+        ]
+    }
+},
+```
+
+Will publish your module to the specified registry instead of registry.npmjs.org. If `options.registry` isn't specified, `https://registry.npmjs.org` is used.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
