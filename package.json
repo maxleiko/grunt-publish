@@ -1,7 +1,7 @@
 {
   "name": "grunt-publish",
   "description": "Automatically publish to NPM registry one or more modules",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "homepage": "https://github.com/maxleiko/grunt-publish",
   "author": {
     "name": "Maxime Tricoire",
@@ -27,19 +27,19 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.2"
+    "grunt-contrib-jshint": "^1",
+    "grunt-contrib-clean": "^1",
+    "grunt-contrib-nodeunit": "^1",
+    "grunt": "^1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "^1"
   },
   "keywords": [
     "gruntplugin"
   ],
   "dependencies": {
-    "async": "^0.2.10",
-    "npm": "^1.4.4"
+    "async": "^1",
+    "npm": "^2"
   }
 }
